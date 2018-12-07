@@ -33,11 +33,12 @@ namespace NoteAppUI
         }
 
         //Редактирование заметки 
-        public NewEditNoteForm(NoteApp.Note notein)
+        public void EditNoteForm(NoteApp.Note notein)
         {
             note = new NoteApp.Note();
             note = notein;
-
+             
+           
             InitializeComponent();
 
             textBox1.Text = note.Namenote;
@@ -49,7 +50,7 @@ namespace NoteAppUI
         }
         
         
-        //Сохранение файла или его редактирование
+        //Сохранение заметки 
         private void button1_Click(object sender, EventArgs e)
         {
             note.Namenote = textBox1.Text;

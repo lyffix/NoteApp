@@ -26,15 +26,15 @@ namespace NoteApp
 
         private void LoadListToScreen()
         {
-            listBox1.Items.Clear();
+           
 
-            for (int i = 0; i < NotesList.Count; i++)
+            for (int i = 0; i < _project.NotesList.Count; i++)
             {
 
-                listBox1.Items.Add(NotesList[i].Namenote);
+                listBox1.Items.Add(_project.NotesList[i].Namenote);
             }
 
-            listBox1.SetSelected(0, true);
+         
 
         }
 
@@ -152,21 +152,25 @@ namespace NoteApp
         //Удаление текущей заметки (+ прописать сообщение "Вы действительно хотите удалить файл?")
         private void button3_Click(object sender, EventArgs e)
         {
-            NotesList.Remove(NotesL);
+            _project.NotesList.Remove(NotesL);
             LoadListToScreen();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NotesL = _project.NotesList[listBox1.SelectedIndex];
+            
+            if (listBox1.SelectedIndex != -1)
 
-            label1.Text = NotesL.Namenote;
-            dateTimePicker1.Value = NotesL.timeCreated;
-            modifiactionDateTimePicker.Value = NotesL.ChangeTime;
-            noteTextTextBox.Text = NotesL.NoteText;
-            SelectCategoryComboBox1.Text = NotesL.Namenote;
-            label7.Text = NotesL.CategoryNote;
+            {
+                NotesL = _project.NotesList[listBox1.SelectedIndex];
 
+                label1.Text = NotesL.Namenote;
+                dateTimePicker1.Value = NotesL.timeCreated;
+                modifiactionDateTimePicker.Value = NotesL.ChangeTime;
+                noteTextTextBox.Text = NotesL.NoteText;
+                SelectCategoryComboBox1.Text = NotesL.Namenote;
+                label7.Text = NotesL.CategoryNote;
+            }
         }
 
         //Показ окна о программе
@@ -190,8 +194,13 @@ namespace NoteApp
         {
             ManagerProject.Save(_project);
         }
-      
+
+
+
         //метод редактирования заметки
+        //1.при редактировании не видит данные, после нажатия Cancel заменяет
+        //название заметки в листбоксе на текст заметки
+        //2.при нажатии кнопки edit ошибка
         private void EditNote()
         {
            
@@ -199,23 +208,24 @@ namespace NoteApp
 
             var selectedIndex = listBox1.SelectedIndex;
             var selectedNote = _project.NotesList[selectedIndex];
+            if (listBox1.SelectedIndex != -1)
 
-            var inner = new NewEditNoteForm(); //Создаем форму
-            inner.note = selectedNote; //Передаем форме данные
-            inner.ShowDialog(); //Отображаем форму для редактирования
-            var updatednote = inner.note;//Забираем измененные данные
+            {
+                var inner = new NewEditNoteForm(); //Создаем форму
+                inner.EditNoteForm(selectedNote);
+                inner.note = selectedNote; //Передаем форме данные
+                inner.ShowDialog(); //Отображаем форму для редактирования
 
-            //Осталось удалить старые данные по выбранному индексу
-            // и заменить их на обновленные
-            listBox1.Items.RemoveAt(selectedIndex);
-            _project.NotesList.RemoveAt(selectedIndex);
+                var updatednote = inner.note;
 
-            _project.NotesList.Insert(selectedIndex, updatednote);
-            var time = updatednote.LastUpdate.ToLongTimeString();
-            var text = updatednote.Text;
-            listBox1.Items.Insert(selectedIndex, time +" " + text);
+                listBox1.Items.RemoveAt(selectedIndex);
+                _project.NotesList.RemoveAt(selectedIndex);
 
-        }
+                _project.NotesList.Insert(selectedIndex, updatednote);
+                var text = updatednote.NoteText;
+                listBox1.Items.Insert(selectedIndex, " " + text);
+            } 
+       }
     }
 }
 
