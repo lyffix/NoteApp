@@ -13,11 +13,46 @@ namespace NoteAppUI
 {
     public partial class NewEditNoteForm : Form
     {
-        public NoteApp.Note note;
+        public Note note;
+
+
+
+        public Note Note
+        {
+            get { return note; }
+            set
+            {
+                note = value;
+                if (note != null)
+                {
+
+                    textBox1.Text = note.Namenote;
+                    comboBox1.Text = note.CategoryNote;
+                    noteListTextBox.Text = note.NoteText;
+                    dateTimePicker1.Value = note.timeCreated;
+                    dateTimePicker2.Value = note.ChangeTime;
+                }
+                else
+                {
+
+                    textBox1.Text = "";
+
+                    noteListTextBox.Text = "";
+                    dateTimePicker1.Value = DateTime.Today;
+                    dateTimePicker2.Value = DateTime.Today;
+                }
+
+            }
+        }
+
+
+
+        //public NoteApp.Note Note;
 
         public NewEditNoteForm()
         {
-            note = new NoteApp.Note();
+           
+           note = new NoteApp.Note();
 
             InitializeComponent();
 
@@ -58,22 +93,22 @@ namespace NoteAppUI
             note.NoteText = noteListTextBox.Text;
             note.timeCreated = dateTimePicker1.Value;
             note.ChangeTime = dateTimePicker2.Value;
-            //Сохранение файла
-            {
-                if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
-                    return;
-                // получаем выбранный файл
-                string filename = saveFileDialog1.FileName;
-                // сохраняем текст в файл
-                System.IO.File.WriteAllText(filename, textBox1.Text);
-                MessageBox.Show("Файл сохранен");
-            }
-
+            
+            DialogResult = DialogResult.OK;
         }
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             
         }
+        //сделать привязку чтобы комбобокс выводил название заметок
+       // private void noteListTextBox_TextChanged(object sender, EventArgs e)
+        //{
+            
+           // note.NoteText = noteListTextBox.Text;
+            //note.ChangeTime = DateTime.Now;
+        }
+    
+        
     }
-}
+

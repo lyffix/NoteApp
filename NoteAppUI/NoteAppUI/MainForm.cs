@@ -13,16 +13,24 @@ using System.IO;
 
 namespace NoteApp
 {
-
+    //TODO:
+    //2. связать листбокс с комбобокс (5 лаба?)
+    //3. верстка 
+  
     public partial class MainForm : Form
     {
         private Project _project = new Project();
 
         
-
         List<Note> NotesList = new List<Note>();
 
+
         Note NotesL = new Note();
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
 
         private void LoadListToScreen()
         {
@@ -48,14 +56,10 @@ namespace NoteApp
 
                 listBox1.Items.Add(_project.NotesList[i].Namenote);
             }
-        }
+           
+         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
+       
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -103,27 +107,30 @@ namespace NoteApp
         private void addNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddNote();
-            
-
         }
+
         //Редактирование текущей заметки
         private void editNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EditNote();
-
         }
+
         //Удаление текущей заметки (+ прописать сообщение "Вы действительно хотите удалить файл?")
         private void removeNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _project.NotesList.Remove(NotesL);
+            listBox1.Items.Clear();
             LoadListToScreen();
+            if (_project.NotesList.Count != 0)
+            {
+                listBox1.SelectedIndex = 0;
+            }
         }
 
         //Добавление новой заметки
         private void button1_Click(object sender, EventArgs e)
         {
             AddNote();
-
         }
 
         //метод добавления новой заметки
@@ -134,7 +141,7 @@ namespace NoteApp
             if (newNoteForm.ShowDialog() == DialogResult.OK)
             {
 
-                NotesL = newNoteForm.note;
+                NotesL = newNoteForm.Note;
 
                 _project.NotesList.Add(NotesL);
                 listBox1.Items.Add(NotesL.Namenote);
@@ -146,16 +153,20 @@ namespace NoteApp
         private void button2_Click(object sender, EventArgs e)
         {
             EditNote();
-
         }
 
         //Удаление текущей заметки (+ прописать сообщение "Вы действительно хотите удалить файл?")
         private void button3_Click(object sender, EventArgs e)
         {
             _project.NotesList.Remove(NotesL);
+            listBox1.Items.Clear();
             LoadListToScreen();
+            if (_project.NotesList.Count != 0)
+            {
+                listBox1.SelectedIndex = 0;
+            }
         }
-
+        
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
@@ -170,7 +181,9 @@ namespace NoteApp
                 noteTextTextBox.Text = NotesL.NoteText;
                 SelectCategoryComboBox1.Text = NotesL.Namenote;
                 label7.Text = NotesL.CategoryNote;
+                
             }
+ 
         }
 
         //Показ окна о программе
@@ -195,39 +208,43 @@ namespace NoteApp
             ManagerProject.Save(_project);
         }
 
-
-
         //метод редактирования заметки
-        //1.при редактировании не видит данные, после нажатия Cancel заменяет
-        //название заметки в листбоксе на текст заметки
-        //2.при нажатии кнопки edit ошибка
         private void EditNote()
         {
            
             NewEditNoteForm newNoteForm = new NewEditNoteForm();
 
             var selectedIndex = listBox1.SelectedIndex;
-            var selectedNote = _project.NotesList[selectedIndex];
             if (listBox1.SelectedIndex != -1)
-
             {
-                var inner = new NewEditNoteForm(); //Создаем форму
-                inner.EditNoteForm(selectedNote);
-                inner.note = selectedNote; //Передаем форме данные
-                inner.ShowDialog(); //Отображаем форму для редактирования
+                var selectedNote = _project.NotesList[selectedIndex];
+                var inner = new NewEditNoteForm();
+                inner.Note = selectedNote; //Создаем форму
+                var result = inner.ShowDialog(this);
 
-                var updatednote = inner.note;
+                if (result == DialogResult.OK)
+                {
+                    //inner.EditNoteForm(selectedNote);
+                    //Передаем форме данные
+                    var updatenote = inner.Note;
 
-                listBox1.Items.RemoveAt(selectedIndex);
-                _project.NotesList.RemoveAt(selectedIndex);
+                    listBox1.Items.RemoveAt(selectedIndex);
+                    _project.NotesList.RemoveAt(selectedIndex);
 
-                _project.NotesList.Insert(selectedIndex, updatednote);
-                var text = updatednote.NoteText;
+                    _project.NotesList.Insert(selectedIndex, updatenote);
+                    ManagerProject.Save(_project);
+                }
+                /* var text = updatenote.NoteText;
                 listBox1.Items.Insert(selectedIndex, " " + text);
-            } 
-       }
+                 */
+            }
+        }
+        }
     }
-}
+
+       
+    
+
 
 
 

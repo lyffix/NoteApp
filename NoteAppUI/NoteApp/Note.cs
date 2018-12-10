@@ -74,6 +74,7 @@ namespace NoteApp
             set
             {
                 TextNote = value;
+               
                 LastChangeTime = DateTime.Now;
             }
         }

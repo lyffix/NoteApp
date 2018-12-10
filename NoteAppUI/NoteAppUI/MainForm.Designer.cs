@@ -92,19 +92,21 @@
             // 
             // noteTextTextBox
             // 
-            this.noteTextTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteTextTextBox.Location = new System.Drawing.Point(314, 189);
+            this.noteTextTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noteTextTextBox.Location = new System.Drawing.Point(317, 143);
             this.noteTextTextBox.Multiline = true;
             this.noteTextTextBox.Name = "noteTextTextBox";
             this.noteTextTextBox.ReadOnly = true;
             this.noteTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.noteTextTextBox.Size = new System.Drawing.Size(543, 401);
+            this.noteTextTextBox.Size = new System.Drawing.Size(554, 434);
             this.noteTextTextBox.TabIndex = 12;
             this.noteTextTextBox.Text = "Текст заметки";
             // 
             // modifiactionDateTimePicker
             // 
-            this.modifiactionDateTimePicker.Location = new System.Drawing.Point(657, 148);
+            this.modifiactionDateTimePicker.Location = new System.Drawing.Point(668, 116);
             this.modifiactionDateTimePicker.Name = "modifiactionDateTimePicker";
             this.modifiactionDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.modifiactionDateTimePicker.TabIndex = 14;
@@ -112,7 +114,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(372, 148);
+            this.dateTimePicker1.Location = new System.Drawing.Point(367, 117);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 15;
@@ -122,7 +124,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(309, 38);
+            this.label1.Location = new System.Drawing.Point(328, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 26);
             this.label1.TabIndex = 16;
@@ -133,7 +135,7 @@
             this.SelectCategoryComboBox1.FormattingEnabled = true;
             this.SelectCategoryComboBox1.Location = new System.Drawing.Point(116, 43);
             this.SelectCategoryComboBox1.Name = "SelectCategoryComboBox1";
-            this.SelectCategoryComboBox1.Size = new System.Drawing.Size(174, 21);
+            this.SelectCategoryComboBox1.Size = new System.Drawing.Size(189, 21);
             this.SelectCategoryComboBox1.TabIndex = 20;
             // 
             // label5
@@ -265,17 +267,19 @@
             // 
             // listBox1
             // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(29, 73);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(261, 511);
+            this.listBox1.Size = new System.Drawing.Size(276, 498);
             this.listBox1.TabIndex = 11;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(311, 148);
+            this.label6.Location = new System.Drawing.Point(314, 123);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
             this.label6.TabIndex = 28;
@@ -292,7 +296,7 @@
             // noteCategoryLabel
             // 
             this.noteCategoryLabel.AutoSize = true;
-            this.noteCategoryLabel.Location = new System.Drawing.Point(311, 99);
+            this.noteCategoryLabel.Location = new System.Drawing.Point(314, 90);
             this.noteCategoryLabel.Name = "noteCategoryLabel";
             this.noteCategoryLabel.Size = new System.Drawing.Size(52, 13);
             this.noteCategoryLabel.TabIndex = 13;
@@ -301,7 +305,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(595, 148);
+            this.label4.Location = new System.Drawing.Point(612, 123);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 30;
@@ -309,10 +313,11 @@
             // 
             // button3
             // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button3.BackgroundImage = global::NoteAppUI.Properties.Resources.iconfinder_Delete_132746;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Location = new System.Drawing.Point(73, 599);
+            this.button3.Location = new System.Drawing.Point(76, 588);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(16, 16);
             this.button3.TabIndex = 25;
@@ -321,10 +326,11 @@
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button2.BackgroundImage = global::NoteAppUI.Properties.Resources.iconfinder_Modify_132685;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(51, 599);
+            this.button2.Location = new System.Drawing.Point(54, 588);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(16, 16);
             this.button2.TabIndex = 24;
@@ -333,11 +339,12 @@
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.SystemColors.Control;
             this.button1.BackgroundImage = global::NoteAppUI.Properties.Resources.iconfinder_Create_132699;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(29, 599);
+            this.button1.Location = new System.Drawing.Point(32, 588);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(16, 16);
             this.button1.TabIndex = 23;
