@@ -51,20 +51,20 @@ namespace NoteAppUI
 
         public NewEditNoteForm()
         {
-           
-           note = new NoteApp.Note();
+
+            note = new NoteApp.Note();
 
             InitializeComponent();
 
-                comboBox1.Items.Add(NoteCategory.Work);
-                comboBox1.Items.Add(NoteCategory.People);
-                comboBox1.Items.Add(NoteCategory.Home);
-                comboBox1.Items.Add(NoteCategory.HealtfandSport);
-                comboBox1.Items.Add(NoteCategory.Finance);
-                comboBox1.Items.Add(NoteCategory.Documents);
-                comboBox1.Items.Add(NoteCategory.Other);
+            comboBox1.Items.Add(NoteCategory.Work);
+            comboBox1.Items.Add(NoteCategory.People);
+            comboBox1.Items.Add(NoteCategory.Home);
+            comboBox1.Items.Add(NoteCategory.HealtfandSport);
+            comboBox1.Items.Add(NoteCategory.Finance);
+            comboBox1.Items.Add(NoteCategory.Documents);
+            comboBox1.Items.Add(NoteCategory.Other);
 
-                saveFileDialog1.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            saveFileDialog1.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
 
         //Редактирование заметки 
@@ -72,42 +72,54 @@ namespace NoteAppUI
         {
             note = new NoteApp.Note();
             note = notein;
-             
            
-            InitializeComponent();
-
-            textBox1.Text = note.Namenote;
-            comboBox1.Text = note.CategoryNote;
-            noteListTextBox.Text = note.NoteText;
-            dateTimePicker1.Value = note.timeCreated;
-            dateTimePicker2.Value = note.ChangeTime;
+            
+            try
+            {
+                textBox1.Text = note.Namenote;
+                comboBox1.Text = note.CategoryNote;
+                noteListTextBox.Text = note.NoteText;
+                dateTimePicker1.Value = note.timeCreated;
+                dateTimePicker2.Value = note.ChangeTime;
+            }
+            catch (ArgumentException exception)
+            {
+                MessageBox.Show(exception.Message);
+                
+            }
+            
 
         }
-        
-        
+
+
         //Сохранение заметки 
         private void button1_Click(object sender, EventArgs e)
         {
-            note.Namenote = textBox1.Text;
-            note.CategoryNote = comboBox1.Text;
-            note.NoteText = noteListTextBox.Text;
-            note.timeCreated = dateTimePicker1.Value;
-            note.ChangeTime = dateTimePicker2.Value;
             
-            DialogResult = DialogResult.OK;
+            try
+            {
+
+                note.Namenote = textBox1.Text;
+                note.CategoryNote = comboBox1.Text;
+                note.NoteText = noteListTextBox.Text;
+                note.timeCreated = dateTimePicker1.Value;
+                note.ChangeTime = dateTimePicker2.Value;
+                DialogResult = DialogResult.OK;
+            }
+
+            catch (ArgumentException exception)
+            {
+                MessageBox.Show(exception.Message);
+                
+            }
+            
         }
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            
+
         }
-        //сделать привязку чтобы комбобокс выводил название заметок
-       // private void noteListTextBox_TextChanged(object sender, EventArgs e)
-        //{
-            
-           // note.NoteText = noteListTextBox.Text;
-            //note.ChangeTime = DateTime.Now;
-        }
+    }
     
         
     }

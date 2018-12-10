@@ -95,18 +95,18 @@
             this.noteTextTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.noteTextTextBox.Location = new System.Drawing.Point(317, 143);
+            this.noteTextTextBox.Location = new System.Drawing.Point(314, 135);
             this.noteTextTextBox.Multiline = true;
             this.noteTextTextBox.Name = "noteTextTextBox";
             this.noteTextTextBox.ReadOnly = true;
             this.noteTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.noteTextTextBox.Size = new System.Drawing.Size(554, 434);
+            this.noteTextTextBox.Size = new System.Drawing.Size(554, 469);
             this.noteTextTextBox.TabIndex = 12;
             this.noteTextTextBox.Text = "Текст заметки";
             // 
             // modifiactionDateTimePicker
             // 
-            this.modifiactionDateTimePicker.Location = new System.Drawing.Point(668, 116);
+            this.modifiactionDateTimePicker.Location = new System.Drawing.Point(668, 109);
             this.modifiactionDateTimePicker.Name = "modifiactionDateTimePicker";
             this.modifiactionDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.modifiactionDateTimePicker.TabIndex = 14;
@@ -114,7 +114,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(367, 117);
+            this.dateTimePicker1.Location = new System.Drawing.Point(367, 109);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 15;
@@ -124,7 +124,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(328, 38);
+            this.label1.Location = new System.Drawing.Point(312, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 26);
             this.label1.TabIndex = 16;
@@ -141,11 +141,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 43);
+            this.label5.Location = new System.Drawing.Point(21, 46);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 21;
-            this.label5.Text = "Show notes:";
+            this.label5.Text = "Show categories:";
             // 
             // exitToolStripMenuItem
             // 
@@ -261,7 +261,7 @@
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
             this.aboutToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
@@ -279,7 +279,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(314, 123);
+            this.label6.Location = new System.Drawing.Point(314, 115);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
             this.label6.TabIndex = 28;
@@ -288,7 +288,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(372, 99);
+            this.label7.Location = new System.Drawing.Point(373, 86);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 29;
@@ -296,7 +296,7 @@
             // noteCategoryLabel
             // 
             this.noteCategoryLabel.AutoSize = true;
-            this.noteCategoryLabel.Location = new System.Drawing.Point(314, 90);
+            this.noteCategoryLabel.Location = new System.Drawing.Point(314, 86);
             this.noteCategoryLabel.Name = "noteCategoryLabel";
             this.noteCategoryLabel.Size = new System.Drawing.Size(52, 13);
             this.noteCategoryLabel.TabIndex = 13;
@@ -305,7 +305,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(612, 123);
+            this.label4.Location = new System.Drawing.Point(607, 115);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 30;

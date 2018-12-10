@@ -34,20 +34,24 @@ namespace NoteApp
             get
             {
                 return NameNote;
+                
             }
             set
             {
+                
                 if (value.Length > 50)
                 {
                     throw new ArgumentException("Длина заголовка заметки не должна быть более 50 символов" + value.Length);
                 }
                 else
                 {
-
+                    
                     NameNote = value;
+                    
                     LastChangeTime = DateTime.Now;
                 }
             }
+
         }
 
        
@@ -88,14 +92,7 @@ namespace NoteApp
             }
             set
             {
-                if (value > DateTime.Now)
-                {
-                    throw new ArgumentException("Дата создания заметки не может быть позже сегодняшней даты" + value);
-                }
-                else
-                {
-                    CreatedOfTime = value;
-                }
+                CreatedOfTime = value;
             }
         }
 
@@ -108,20 +105,15 @@ namespace NoteApp
 
             set
             {
-                if (value > DateTime.Now)
-                {
-                    throw new ArgumentException("Дата последнего изменения заметки не может быть позже сегодняшней даты" + value);
-                }
                
-                else
-                {
                     LastChangeTime = value;
-                }
+                
             }
         }
 
-        
+       
     }
+    
 }
 
     

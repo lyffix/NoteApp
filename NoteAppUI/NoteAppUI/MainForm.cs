@@ -13,18 +13,13 @@ using System.IO;
 
 namespace NoteApp
 {
-    //TODO:
-    //2. связать листбокс с комбобокс (5 лаба?)
-    //3. верстка 
-  
+      
     public partial class MainForm : Form
     {
         private Project _project = new Project();
-
-        
+                
         List<Note> NotesList = new List<Note>();
-
-
+        
         Note NotesL = new Note();
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -35,14 +30,11 @@ namespace NoteApp
         private void LoadListToScreen()
         {
            
-
             for (int i = 0; i < _project.NotesList.Count; i++)
             {
 
                 listBox1.Items.Add(_project.NotesList[i].Namenote);
             }
-
-         
 
         }
 
@@ -51,15 +43,22 @@ namespace NoteApp
             InitializeComponent();
             _project = ManagerProject.Des();
 
+            SelectCategoryComboBox1.Items.Add(NoteCategory.Work);
+            SelectCategoryComboBox1.Items.Add(NoteCategory.People);
+            SelectCategoryComboBox1.Items.Add(NoteCategory.Home);
+            SelectCategoryComboBox1.Items.Add(NoteCategory.HealtfandSport);
+            SelectCategoryComboBox1.Items.Add(NoteCategory.Finance);
+            SelectCategoryComboBox1.Items.Add(NoteCategory.Documents);
+            SelectCategoryComboBox1.Items.Add(NoteCategory.Other);
+
             for (int i = 0; i < _project.NotesList.Count; i++)
             {
 
                 listBox1.Items.Add(_project.NotesList[i].Namenote);
             }
-           
-         }
 
-       
+        }
+               
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -118,13 +117,7 @@ namespace NoteApp
         //Удаление текущей заметки (+ прописать сообщение "Вы действительно хотите удалить файл?")
         private void removeNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _project.NotesList.Remove(NotesL);
-            listBox1.Items.Clear();
-            LoadListToScreen();
-            if (_project.NotesList.Count != 0)
-            {
-                listBox1.SelectedIndex = 0;
-            }
+            DeleteNote();
         }
 
         //Добавление новой заметки
@@ -142,10 +135,9 @@ namespace NoteApp
             {
 
                 NotesL = newNoteForm.Note;
-
+               
                 _project.NotesList.Add(NotesL);
                 listBox1.Items.Add(NotesL.Namenote);
-
             }
         }
 
@@ -155,16 +147,10 @@ namespace NoteApp
             EditNote();
         }
 
-        //Удаление текущей заметки (+ прописать сообщение "Вы действительно хотите удалить файл?")
+        //Удаление текущей заметки 
         private void button3_Click(object sender, EventArgs e)
         {
-            _project.NotesList.Remove(NotesL);
-            listBox1.Items.Clear();
-            LoadListToScreen();
-            if (_project.NotesList.Count != 0)
-            {
-                listBox1.SelectedIndex = 0;
-            }
+              DeleteNote();
         }
         
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -179,7 +165,7 @@ namespace NoteApp
                 dateTimePicker1.Value = NotesL.timeCreated;
                 modifiactionDateTimePicker.Value = NotesL.ChangeTime;
                 noteTextTextBox.Text = NotesL.NoteText;
-                SelectCategoryComboBox1.Text = NotesL.Namenote;
+                SelectCategoryComboBox1.Text = NotesL.CategoryNote;
                 label7.Text = NotesL.CategoryNote;
                 
             }
@@ -207,6 +193,25 @@ namespace NoteApp
         {
             ManagerProject.Save(_project);
         }
+
+        //метод для удаления заметки
+        private void DeleteNote()
+        {
+
+            DialogResult result = MessageBox.Show("Do you really want to remove this note? ", "NoteApp",
+                  MessageBoxButtons.OKCancel,
+                  MessageBoxIcon.Question);
+            {
+                _project.NotesList.Remove(NotesL);
+                listBox1.Items.Clear();
+                LoadListToScreen();
+                if (_project.NotesList.Count != 0)
+                {
+                    listBox1.SelectedIndex = 0;
+                }
+            }
+        }
+
 
         //метод редактирования заметки
         private void EditNote()
@@ -239,11 +244,13 @@ namespace NoteApp
                  */
             }
         }
-        }
-    }
-
        
+    }
     
+}
+
+
+
 
 
 
