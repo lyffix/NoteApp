@@ -10,25 +10,25 @@ using NoteApp;
 namespace NoteApp
 {
     
-    /// Класс записи 
+    ///Класс записок 
     public class Note
     {
-        /// Название заметки 
+        ///Название заметки 
         private string NameNote;
 
-        /// Категории заметок 
+        ///Категории заметок 
         private string NoteCategory;
 
-        /// Текст заметки 
+        ///Текст заметки 
         private string TextNote;
 
-        /// Время создания 
+        ///Время создания 
         private DateTime CreatedOfTime;
 
-        /// Время последнего изменения 
+        ///Время последнего изменения 
         private DateTime LastChangeTime;
 
-        /// Заголовок заметки
+        ///Заголовок заметки
         public string Namenote
         {
             get
