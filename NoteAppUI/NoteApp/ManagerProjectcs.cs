@@ -47,7 +47,7 @@ namespace NoteApp
                     Des = serializer.Deserialize<Project>(reader);
                 }
             }
-            catch (Exception )
+            catch (Exception e)
             {
                 Des = new Project();
             }

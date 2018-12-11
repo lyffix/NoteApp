@@ -135,9 +135,13 @@ namespace NoteApp
             {
 
                 NotesL = newNoteForm.Note;
-               
+
                 _project.NotesList.Add(NotesL);
-                listBox1.Items.Add(NotesL.Namenote);
+                listBox1.Items.Clear();
+                foreach (var notes in _project.NotesList)
+                {
+                    listBox1.Items.Add(NotesL.Namenote);
+                }
             }
         }
 
@@ -197,19 +201,22 @@ namespace NoteApp
         //метод для удаления заметки
         private void DeleteNote()
         {
-
-            DialogResult result = MessageBox.Show("Do you really want to remove this note? ", "NoteApp",
+            
+                DialogResult result = MessageBox.Show("Do you really want to remove this note? ", "NoteApp",
                   MessageBoxButtons.OKCancel,
                   MessageBoxIcon.Question);
-            {
-                _project.NotesList.Remove(NotesL);
-                listBox1.Items.Clear();
-                LoadListToScreen();
-                if (_project.NotesList.Count != 0)
+
                 {
-                    listBox1.SelectedIndex = 0;
+                    _project.NotesList.Remove(NotesL);
+                    listBox1.Items.Clear();
+                    LoadListToScreen();
+
+                    if (_project.NotesList.Count != 0)
+                    {
+                        listBox1.SelectedIndex = 0;
+                    }
                 }
-            }
+            
         }
 
 
