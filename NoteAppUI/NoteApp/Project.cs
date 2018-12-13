@@ -13,4 +13,5 @@ namespace NoteApp
     {
         public List<Note> NotesList = new List<Note>();
     }
+    //написать для комбобокса выпадающий список
 }

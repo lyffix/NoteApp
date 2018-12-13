@@ -41,7 +41,7 @@ namespace NoteApp
                 
                 if (value.Length > 50)
                 {
-                    throw new ArgumentException("Длина заголовка заметки не должна быть более 50 символов" + value.Length);
+                    throw new ArgumentException("Длина заголовка заметки не должна быть более 50 символов");
                 }
                 else
                 {

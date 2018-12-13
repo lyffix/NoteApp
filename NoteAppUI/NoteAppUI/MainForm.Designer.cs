@@ -100,15 +100,17 @@
             this.noteTextTextBox.Name = "noteTextTextBox";
             this.noteTextTextBox.ReadOnly = true;
             this.noteTextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.noteTextTextBox.Size = new System.Drawing.Size(554, 469);
+            this.noteTextTextBox.Size = new System.Drawing.Size(484, 323);
             this.noteTextTextBox.TabIndex = 12;
             this.noteTextTextBox.Text = "Текст заметки";
             // 
             // modifiactionDateTimePicker
             // 
-            this.modifiactionDateTimePicker.Location = new System.Drawing.Point(668, 109);
+            this.modifiactionDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modifiactionDateTimePicker.Location = new System.Drawing.Point(622, 109);
             this.modifiactionDateTimePicker.Name = "modifiactionDateTimePicker";
-            this.modifiactionDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.modifiactionDateTimePicker.Size = new System.Drawing.Size(176, 20);
             this.modifiactionDateTimePicker.TabIndex = 14;
             this.modifiactionDateTimePicker.ValueChanged += new System.EventHandler(this.modifiactionDateTimePicker_ValueChanged);
             // 
@@ -116,7 +118,7 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(367, 109);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(171, 20);
             this.dateTimePicker1.TabIndex = 15;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
@@ -197,7 +199,7 @@
             this.toolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(880, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(810, 24);
             this.menuStrip1.TabIndex = 22;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -261,7 +263,7 @@
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
             this.aboutToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
@@ -272,7 +274,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(29, 73);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(276, 498);
+            this.listBox1.Size = new System.Drawing.Size(276, 342);
             this.listBox1.TabIndex = 11;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -305,7 +307,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(607, 115);
+            this.label4.Location = new System.Drawing.Point(566, 115);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 30;
@@ -317,7 +319,7 @@
             this.button3.BackgroundImage = global::NoteAppUI.Properties.Resources.iconfinder_Delete_132746;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Location = new System.Drawing.Point(76, 588);
+            this.button3.Location = new System.Drawing.Point(76, 442);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(16, 16);
             this.button3.TabIndex = 25;
@@ -330,7 +332,7 @@
             this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button2.BackgroundImage = global::NoteAppUI.Properties.Resources.iconfinder_Modify_132685;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(54, 588);
+            this.button2.Location = new System.Drawing.Point(54, 442);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(16, 16);
             this.button2.TabIndex = 24;
@@ -344,7 +346,7 @@
             this.button1.BackgroundImage = global::NoteAppUI.Properties.Resources.iconfinder_Create_132699;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(32, 588);
+            this.button1.Location = new System.Drawing.Point(32, 442);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(16, 16);
             this.button1.TabIndex = 23;
@@ -358,7 +360,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button3;
-            this.ClientSize = new System.Drawing.Size(880, 616);
+            this.ClientSize = new System.Drawing.Size(810, 470);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);

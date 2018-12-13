@@ -114,7 +114,7 @@ namespace NoteApp
             EditNote();
         }
 
-        //Удаление текущей заметки (+ прописать сообщение "Вы действительно хотите удалить файл?")
+        //Удаление текущей заметки
         private void removeNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteNote();
@@ -137,11 +137,8 @@ namespace NoteApp
                 NotesL = newNoteForm.Note;
 
                 _project.NotesList.Add(NotesL);
-                listBox1.Items.Clear();
-                foreach (var notes in _project.NotesList)
-                {
-                    listBox1.Items.Add(NotesL.Namenote);
-                }
+                listBox1.Items.Add(NotesL.Namenote);
+                   
             }
         }
 
