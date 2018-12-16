@@ -13,7 +13,13 @@ using System.IO;
 
 namespace NoteApp
 {
-      
+    //TODO:
+    //1. юнит тест для дес-ции и сер-ции (ошибка с категориями)
+    //2. доработать сортировку заметок по дате изменения + перегруженный метод (возвращает отсортированный по дате изменения
+    //список заметок, принадлежащих только этой категории)
+    //3. сделать показ заметок по категориям + All
+    //4. создать свойство "Текущая заметка"
+
     public partial class MainForm : Form
     {
         private Project _project = new Project();
@@ -29,10 +35,8 @@ namespace NoteApp
 
         private void LoadListToScreen()
         {
-           
-            for (int i = 0; i < _project.NotesList.Count; i++)
+           for (int i = 0; i < _project.NotesList.Count; i++)
             {
-
                 listBox1.Items.Add(_project.NotesList[i].Namenote);
             }
 
@@ -42,7 +46,10 @@ namespace NoteApp
         {
             InitializeComponent();
             _project = ManagerProject.Des();
+            //сортировка заметок
+            _project.NotesList = _project.SortingNote();
 
+            
             SelectCategoryComboBox1.Items.Add(NoteCategory.Work);
             SelectCategoryComboBox1.Items.Add(NoteCategory.People);
             SelectCategoryComboBox1.Items.Add(NoteCategory.Home);
@@ -56,6 +63,17 @@ namespace NoteApp
 
                 listBox1.Items.Add(_project.NotesList[i].Namenote);
             }
+
+            //удаляем через del
+            listBox1.KeyDown += new KeyEventHandler(listBox1_Keys);
+
+            /*foreach (var note in _project.NotesList)
+            {
+               listBox1.Items.Add(note.Namenote);//отображение всех заметок по дате изменения
+            }
+            */
+
+
 
         }
                
@@ -138,8 +156,11 @@ namespace NoteApp
 
                 _project.NotesList.Add(NotesL);
                 listBox1.Items.Add(NotesL.Namenote);
-                   
-            }
+
+                
+                _project.NotesList = _project.SortingNote();
+                
+             }
         }
 
         //Редактирование текущей заметки
@@ -158,7 +179,7 @@ namespace NoteApp
         {
             
             if (listBox1.SelectedIndex != -1)
-
+            
             {
                 NotesL = _project.NotesList[listBox1.SelectedIndex];
 
@@ -170,6 +191,8 @@ namespace NoteApp
                 label7.Text = NotesL.CategoryNote;
                 
             }
+           
+           
  
         }
 
@@ -199,9 +222,9 @@ namespace NoteApp
         private void DeleteNote()
         {
             
-                DialogResult result = MessageBox.Show("Do you really want to remove this note? ", "NoteApp",
+                if (MessageBox.Show("Do you really want to remove this note? ", "NoteApp",
                   MessageBoxButtons.OKCancel,
-                  MessageBoxIcon.Question);
+                  MessageBoxIcon.Question) == DialogResult.OK)
 
                 {
                     _project.NotesList.Remove(NotesL);
@@ -212,12 +235,28 @@ namespace NoteApp
                     {
                         listBox1.SelectedIndex = 0;
                     }
+
+                _project.NotesList = _project.SortingNote();
+               
+            }
+            
+        }
+
+        /// <summary>
+        /// Метод удаления через кнопку DELETE
+        /// </summary>
+        private void listBox1_Keys(object sender, KeyEventArgs e)
+        {
+           
+                if (e.KeyCode == Keys.Delete)
+                {
+                    DeleteNote();
+                    e.Handled = true;
                 }
             
         }
 
-
-        //метод редактирования заметки
+        ///метод редактирования заметки
         private void EditNote()
         {
            
@@ -241,14 +280,15 @@ namespace NoteApp
                     _project.NotesList.RemoveAt(selectedIndex);
 
                     _project.NotesList.Insert(selectedIndex, updatenote);
+                    _project.NotesList = _project.SortingNote();
+                    
                     ManagerProject.Save(_project);
                 }
-                /* var text = updatenote.NoteText;
-                listBox1.Items.Insert(selectedIndex, " " + text);
-                 */
+               
             }
         }
-       
+
+        
     }
     
 }

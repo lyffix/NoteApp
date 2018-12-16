@@ -16,7 +16,7 @@ namespace NoteApp
         public static void Save(Project S)
 
         {
-            string File = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\notes.xml";
+             string File = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\notes.xml";
             //Создаём экземпляр сериализатора
             JsonSerializer serializer = new JsonSerializer();
 
@@ -47,7 +47,7 @@ namespace NoteApp
                     Des = serializer.Deserialize<Project>(reader);
                 }
             }
-            catch (Exception e)
+            catch (Exception expected)
             {
                 Des = new Project();
             }

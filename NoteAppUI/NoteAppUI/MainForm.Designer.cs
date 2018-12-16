@@ -139,6 +139,7 @@
             this.SelectCategoryComboBox1.Name = "SelectCategoryComboBox1";
             this.SelectCategoryComboBox1.Size = new System.Drawing.Size(189, 21);
             this.SelectCategoryComboBox1.TabIndex = 20;
+            this.SelectCategoryComboBox1.SelectedIndexChanged += new System.EventHandler(this.SelectCategoryComboBox1_SelectedIndexChanged);
             // 
             // label5
             // 

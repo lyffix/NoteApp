@@ -92,7 +92,14 @@ namespace NoteApp
             }
             set
             {
-                CreatedOfTime = value;
+                if (value > DateTime.Now)
+                {
+                    throw new ArgumentException("Дата создания не может быть позже сегодняшней даты");
+                }
+                else
+                {
+                    CreatedOfTime = value;
+                }
             }
         }
 
@@ -105,13 +112,18 @@ namespace NoteApp
 
             set
             {
+                if (value > DateTime.Now)
+                {
+                    throw new ArgumentException("Дата последнего изменения не может быть позже сегодняшней даты");
+                }
                
+                else
+                {
                     LastChangeTime = value;
-                
+                }
             }
         }
-
-       
+        
     }
     
 }

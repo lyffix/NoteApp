@@ -35,6 +35,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\..\NUnit.Framework-3.11.0\bin\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="NUnit3.TestAdapter">
+      <HintPath>..\..\..\UT\build\netcoreapp1.0\NUnit3.TestAdapter.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +56,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NoteApp\NoteApp.csproj">
+      <Project>{ef40d0ed-12a3-45dd-a482-3b7c14e68711}</Project>
+      <Name>NoteApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
