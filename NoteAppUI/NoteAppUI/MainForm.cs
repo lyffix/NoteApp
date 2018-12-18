@@ -25,6 +25,9 @@ namespace NoteApp
         private Project _project = new Project();
                 
         List<Note> NotesList = new List<Note>();
+
+        List<Note> SelectedNoteList = new List<Note>();
+
         
         Note NotesL = new Note();
 
@@ -288,7 +291,19 @@ namespace NoteApp
             }
         }
 
-        
+        private void SelectCategoryComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            for(int i = 0; i < _project.NotesList.Count; i++)
+            {
+
+                if(_project.NotesList[i].CategoryNote == SelectCategoryComboBox1.Text)
+                {
+                    listBox1.Items.Add(_project.NotesList[i].Namenote);
+                }
+
+            }
+        }
     }
     
 }

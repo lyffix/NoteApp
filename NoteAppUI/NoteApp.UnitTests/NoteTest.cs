@@ -52,7 +52,8 @@ namespace NoteApp.UnitTests
             note.CategoryNote = expected;
             var actual = note.CategoryNote;
             Assert.AreEqual(expected, actual, "Геттер CategoryNote возвращает неправильную информацию");
-        }
+        }
+
         [Test(Description = "Позитивный тест геттера NoteText")]
         public void TestNoteTextGet_CorrectValue()
         {
