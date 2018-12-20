@@ -6,8 +6,5 @@ using System.Threading.Tasks;
 
 namespace NoteApp.UnitTests
 {
-    class NoteCategory
-    {
-       
-    }
+    
 }

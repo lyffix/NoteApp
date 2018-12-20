@@ -16,7 +16,8 @@ namespace NoteApp.UnitTests
     public class ManagerProjectcsTest
     {
 
-
+        //TODO
+        //сделать из двух тестов один, где есть проверка двух условий, использовать Assert
         [Test(Description = "Тест десериализации")]
         public void TestDeserialization()
         {
@@ -24,7 +25,7 @@ namespace NoteApp.UnitTests
             Project TestSaveProject = new Project();
             Note NotesL = new Note();
             NotesL.Namenote = "Ksuxa";
-            NotesL.CategoryNote = NoteCategory.Work;
+            NotesL.CategoryNote = NoteApp.NoteCategory.Work.ToString();
             NotesL.NoteText = "kk";
             NotesL.timeCreated = new DateTime(2018, 12, 15);
             NotesL.ChangeTime = new DateTime(2018, 12, 15);
@@ -59,13 +60,13 @@ namespace NoteApp.UnitTests
             Project TestSaveProject = new Project();
             Note NotesL = new Note();
             NotesL.Namenote = "Katuxa";
-            NotesL.CategoryNote = NoteCategory.Work;
+            NotesL.CategoryNote = NoteApp.NoteCategory.Work.ToString();
             NotesL.NoteText = "kk";
             NotesL.timeCreated = new DateTime(2018, 12, 15);
             NotesL.ChangeTime = new DateTime(2018, 12, 15);
             TestSaveProject.NotesList.Add(NotesL);
             ManagerProject.Save(TestSaveProject);
-            ManagerProject.Save(TestCopy);
+          
         }
     }
 }

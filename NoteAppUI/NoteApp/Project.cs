@@ -15,6 +15,7 @@ namespace NoteApp
     {
         public List<Note> NotesList = new List<Note>();
 
+        //метод Текущей заметки сделать через get set
 
         /// <summary>
         /// метод, который возвращает список заметок, отсортированный по дате изменения.
