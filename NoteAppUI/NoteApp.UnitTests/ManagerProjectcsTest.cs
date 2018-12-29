@@ -15,32 +15,30 @@ namespace NoteApp.UnitTests
     [TestFixture]
     public class ManagerProjectcsTest
     {
-
-        //TODO
-        //сделать из двух тестов один, где есть проверка двух условий, использовать Assert
+        
         [Test(Description = "Тест десериализации")]
         public void TestDeserialization()
         {
-            Project TestCopy = ManagerProject.Des();
+            //Project TestCopy = ManagerProject.Des();
             Project TestSaveProject = new Project();
             Note NotesL = new Note();
             NotesL.Namenote = "Ksuxa";
-            NotesL.CategoryNote = NoteApp.NoteCategory.Work.ToString();
+            NotesL.CategoryNote = NoteApp.NoteCategory.Home.ToString();
             NotesL.NoteText = "kk";
             NotesL.timeCreated = new DateTime(2018, 12, 15);
             NotesL.ChangeTime = new DateTime(2018, 12, 15);
 
             TestSaveProject.NotesList.Add(NotesL);
+            TestSaveProject.CurrentNote = NotesL;
             ManagerProject.Save(TestSaveProject);
-            Project actual = new Project();
 
-            actual = ManagerProject.Des();
-            Project exception = TestSaveProject;
-            ManagerProject.Save(TestCopy);
+            Project actual = ManagerProject.Des();
+            //Project exception = TestSaveProject;
+            //ManagerProject.Save(TestCopy);
 
             bool TestTrue = true;
 
-            if (actual.NotesList[0] == exception.NotesList[0])
+            if (actual.NotesList[0].Namenote == TestSaveProject.NotesList[0].Namenote)
             {
                 TestTrue = true;
             }
@@ -48,7 +46,7 @@ namespace NoteApp.UnitTests
             {
                 TestTrue = false;
             }
-            Assert.AreEqual(true, TestTrue, " Десериализация работает некорректно");
+            Assert.IsTrue(TestTrue);
 
         }
 

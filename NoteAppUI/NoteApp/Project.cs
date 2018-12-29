@@ -13,23 +13,27 @@ namespace NoteApp
     /// </summary>
     public class Project
     {
-        public List<Note> NotesList = new List<Note>();
+        public List<NoteApp.Note> NotesList = new List<NoteApp.Note>();
+
+        public NoteApp.Note CurrentNote = new NoteApp.Note();
+
+        public List<NoteApp.Note> SelectedNotes = new List<NoteApp.Note>();
 
         //метод Текущей заметки сделать через get set
 
         /// <summary>
         /// метод, который возвращает список заметок, отсортированный по дате изменения.
         /// </summary> 
-        public List<Note> SortingNote()
+        public List<NoteApp.Note> SortingNote(List<NoteApp.Note> ListToSort)
         {
-            var sortedNotesList = NotesList.OrderBy(x => x.ChangeTime);
+            var sortedNotesList = ListToSort.OrderByDescending(x => x.ChangeTime);
             return sortedNotesList.ToList();
         }
 
         //метод для вывода заметок по категориям 
-        public List<Note> SortingNote(string Find)
+        public List<NoteApp.Note> SortingNote(string Find)
         {
-            var sortedNote = NotesList.OrderBy(x => x.ChangeTime);
+            var sortedNote = NotesList.OrderByDescending(x => x.ChangeTime);
             var FindsortedNote = sortedNote.ToList().FindAll(x => x.CategoryNote.StartsWith(Find));
             return FindsortedNote;
 

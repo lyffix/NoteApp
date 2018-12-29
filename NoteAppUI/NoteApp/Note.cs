@@ -14,7 +14,7 @@ namespace NoteApp
     public class Note
     {
         ///Название заметки 
-        private string NameNote;
+        private string NoteName;
 
         ///Категории заметок 
         private string NoteCategory;
@@ -33,20 +33,20 @@ namespace NoteApp
         {
             get
             {
-                return NameNote;
+                return NoteName;
                 
             }
             set
             {
                 
-                if (value.Length > 50)
-                {
-                    throw new ArgumentException("Длина заголовка заметки не должна быть более 50 символов");
-                }
-                else
+               if (value.Length > 50)
+               {
+                   throw new ArgumentException("Длина заголовка заметки не должна быть более 50 символов");
+               }
+               else
                 {
                     
-                    NameNote = value;
+                    NoteName = value;
                     
                     LastChangeTime = DateTime.Now;
                 }
@@ -83,7 +83,6 @@ namespace NoteApp
             }
         }
 
-        //
         public DateTime timeCreated
         {
             get
@@ -92,14 +91,9 @@ namespace NoteApp
             }
             set
             {
-                if (value > DateTime.Now)
-                {
-                    throw new ArgumentException("Дата создания не может быть позже сегодняшней даты");
-                }
-                else
-                {
-                    CreatedOfTime = value;
-                }
+                
+                CreatedOfTime = value;
+                
             }
         }
 
@@ -111,16 +105,9 @@ namespace NoteApp
             }
 
             set
-            {
-                if (value > DateTime.Now)
-                {
-                    throw new ArgumentException("Дата последнего изменения не может быть позже сегодняшней даты");
-                }
-               
-                else
-                {
-                    LastChangeTime = value;
-                }
+            { 
+                LastChangeTime = value;
+                
             }
         }
         

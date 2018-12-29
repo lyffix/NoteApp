@@ -34,7 +34,7 @@ namespace NoteApp.UnitTests
         }
 
         [Test(Description = "Негативный тест сеттера Namenote")]
-        public void TestNamenoteSet_Longer40Symbols()
+        public void TestNamenoteSet_Longer50Symbols()
         {
             var wrongNamenote = "Смирнов-Смирнов-Смирнов-Смирнов-Смирнов-Смирнов-Смирнов-Смирнов";
             var note = new Note();
@@ -76,16 +76,7 @@ namespace NoteApp.UnitTests
             Assert.AreEqual(expected, actual, "Геттер timeCreated возвращает неправильную дату");
         }
 
-        [Test(Description = "Негативный тест сеттера timeCreated")]
-        public void TesttimeCreatedSet_olddate()
-        {
-            var wrongtimeCreated = new DateTime(2049, 9, 4);
-            var note = new Note();
-
-            Assert.Throws<ArgumentException>(
-            () => { note.timeCreated = wrongtimeCreated; },
-            "Ошибка в задании даты создании заметки");
-        }
+       
 
         [Test(Description = "Позитивный тест геттера ChangeTime")]
         public void TestChangeTimeGet_CorrectValue()
@@ -98,17 +89,7 @@ namespace NoteApp.UnitTests
             Assert.AreEqual(expected, actual, "Геттер ChangeTime возвращает неправильную дату");
         }
 
-        [TestCase("1900.01.01", typeof(FormatException),
-            "Ошибка в несоответствии даты редактирования дате создания",
-            TestName = "Негативный тест геттера ChangeTime на соотвествие дате создания")]
-        [TestCase("2096.01.01", typeof(ArgumentException),
-            "Ошибка в несоответствии даты редактирования нынешней дате",
-            TestName = "Негативный тест геттера ChangeTime на соответствие нынешней дате")]
-        public void TestChangeTime(string wrongDate, Type expectedException, string message)
-        {
-            note.timeCreated = new DateTime(2000, 01, 01);
-            Assert.Throws(expectedException, () => { note.ChangeTime = Convert.ToDateTime(wrongDate); }, message);
-        }
+        
     }
 
 }

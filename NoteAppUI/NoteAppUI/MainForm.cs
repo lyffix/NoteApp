@@ -13,38 +13,34 @@ using System.IO;
 
 namespace NoteApp
 {
-    //TODO:
-    //1. юнит тест для дес-ции и сер-ции 
-    //2. доработать сортировку заметок по дате изменения + перегруженный метод (возвращает отсортированный по дате изменения
-    //список заметок, принадлежащих только этой категории)
-    //3. сделать показ заметок по категориям (При выборе пункта «All» отобразить все заметки)
-    //4.в классе Project создать свойство "Текущая заметка, 
-    //которое меняется в случае просмотра пользователем какой-либо заметки в программе
-    //Значение свойства должно также сохраняться в файл. 
-    //При запуске программы значение свойства должно загружаться из файла, 
-    //и пользователю в главном окне должна отобразиться последняя просмотренная им заметка.
+   
 
     public partial class MainForm : Form
     {
         private Project _project = new Project();
                 
-        List<Note> NotesList = new List<Note>();
-
-        List<Note> SelectedNoteList = new List<Note>();
-
-        
-        Note NotesL = new Note();
-
+      
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            SelectCategoryComboBox1.Text = NoteCategory.All.ToString();
+            LoadListToScreen();
         }
 
         private void LoadListToScreen()
         {
-           for (int i = 0; i < _project.NotesList.Count; i++)
+            _project.SelectedNotes = _project.SortingNote(_project.SelectedNotes);
+
+            listBox1.Items.Clear();
+
+            for (int i = 0; i < _project.SelectedNotes.Count; i++)
             {
-                listBox1.Items.Add(_project.NotesList[i].Namenote);
+                listBox1.Items.Add(_project.SelectedNotes[i].Namenote);
+            }
+
+            if(listBox1.Items.Count != 0)
+            {
+
+                listBox1.SelectedIndex = 0;
             }
 
         }
@@ -53,10 +49,9 @@ namespace NoteApp
         {
             InitializeComponent();
             _project = ManagerProject.Des();
-            //сортировка заметок
-            _project.NotesList = _project.SortingNote();
+           
 
-            
+            SelectCategoryComboBox1.Items.Add(NoteCategory.All);
             SelectCategoryComboBox1.Items.Add(NoteCategory.Work);
             SelectCategoryComboBox1.Items.Add(NoteCategory.People);
             SelectCategoryComboBox1.Items.Add(NoteCategory.Home);
@@ -65,68 +60,23 @@ namespace NoteApp
             SelectCategoryComboBox1.Items.Add(NoteCategory.Documents);
             SelectCategoryComboBox1.Items.Add(NoteCategory.Other);
 
-            for (int i = 0; i < _project.NotesList.Count; i++)
-            {
-
-                listBox1.Items.Add(_project.NotesList[i].Namenote);
-            }
-
+            //SelectCategoryComboBox1.SelectedItem = 0;
+            //LoadListToScreen();
+           
+            
             //удаляем через del
             listBox1.KeyDown += new KeyEventHandler(listBox1_Keys);
-
-            /*foreach (var note in _project.NotesList)
-            {
-               listBox1.Items.Add(note.Namenote);//отображение всех заметок по дате изменения
-            }
-            */
-
-
-
+            
         }
                
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
+       
         //Выход из программы
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void loadNotesFromDiskToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Создаём экземпляр сериализатора
-            JsonSerializer serializer = new JsonSerializer();
-            //Открываем поток для чтения из файла с указанием пути
-
-            serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss";
-
-            using (StreamReader sr = new StreamReader(@"c:\json.txt"))
-            using (JsonReader reader = new JsonTextReader(sr))
-
-            {
-                //Вызываем десериализацию и явно преобразуем результат в целевой тип данных
-                NotesList = (List<Note>)serializer.Deserialize(reader);
-            }
-
-        }
-
-        private void saveToDiskToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Создаём экземпляр сериализатора
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.DateFormatString = "yyyy'-'MM'-'dd'T'HH':'mm':'ss";
-            //Открываем поток для записи в файл с указанием пути
-            using (StreamWriter sw = new StreamWriter(@"C:\NoteApp.notes"))
-            using (JsonWriter writer = new JsonTextWriter(sw))
-            {
-                //Вызываем сериализацию и передаем объект, который хотим сериализовать
-                serializer.Serialize(writer, NotesL);
-            }
-        }
-
+       
         //Добавление новой заметки
         private void addNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -151,27 +101,6 @@ namespace NoteApp
             AddNote();
         }
 
-        //метод добавления новой заметки
-        private void AddNote()
-        {
-            NewEditNoteForm newNoteForm = new NewEditNoteForm();
-
-            if (newNoteForm.ShowDialog() == DialogResult.OK)
-            {
-
-                NotesL = newNoteForm.Note;
-
-                _project.NotesList.Add(NotesL);
-                listBox1.Items.Add(NotesL.Namenote);
-
-                
-                _project.NotesList = _project.SortingNote();
-
-                ManagerProject.Save(_project);
-
-            }
-        }
-
         //Редактирование текущей заметки
         private void button2_Click(object sender, EventArgs e)
         {
@@ -181,8 +110,35 @@ namespace NoteApp
         //Удаление текущей заметки 
         private void button3_Click(object sender, EventArgs e)
         {
-              DeleteNote();
+            DeleteNote();
         }
+
+        //метод добавления новой заметки
+        private void AddNote()
+        {
+            NewEditNoteForm newNoteForm = new NewEditNoteForm();
+
+            if (newNoteForm.ShowDialog() == DialogResult.OK)
+            {
+
+                _project.CurrentNote = newNoteForm.Note;
+                //NotesL = newNoteForm.Note;
+
+                _project.NotesList.Add(_project.CurrentNote);//NotesL);
+                listBox1.Items.Add(_project.CurrentNote);
+                SelectNotesByCategory();
+
+                LoadListToScreen();
+
+                
+               // _project.SelectedNotes = _project.SortingNote(_project.NotesList);
+
+                ManagerProject.Save(_project);
+
+            }
+        }
+
+       
         
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -190,19 +146,18 @@ namespace NoteApp
             if (listBox1.SelectedIndex != -1)
             
             {
-                NotesL = _project.NotesList[listBox1.SelectedIndex];
+                _project.CurrentNote  = _project.SelectedNotes[listBox1.SelectedIndex];
 
-                label1.Text = NotesL.Namenote;
-                dateTimePicker1.Value = NotesL.timeCreated;
-                modifiactionDateTimePicker.Value = NotesL.ChangeTime;
-                noteTextTextBox.Text = NotesL.NoteText;
-                SelectCategoryComboBox1.Text = NotesL.CategoryNote;
-                label7.Text = NotesL.CategoryNote;
+                label1.Text = _project.CurrentNote.Namenote;
+                dateTimePicker1.Value = _project.CurrentNote.timeCreated;
+                modifiactionDateTimePicker.Value = _project.CurrentNote.ChangeTime;
+                noteTextTextBox.Text = _project.CurrentNote.NoteText;
+                //SelectCategoryComboBox1.Text = _project.CurrentNote.CategoryNote;
+                label7.Text = _project.CurrentNote.CategoryNote;
                 
             }
            
            
- 
         }
 
         //Показ окна о программе
@@ -211,17 +166,7 @@ namespace NoteApp
             About aboutForm = new About();
             aboutForm.ShowDialog();
         }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine(DateTime.Now);
-        }
-
-        private void modifiactionDateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine(DateTime.Now);
-        }
-
+        
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ManagerProject.Save(_project);
@@ -236,16 +181,11 @@ namespace NoteApp
                   MessageBoxIcon.Question) == DialogResult.OK)
 
                 {
-                    _project.NotesList.Remove(NotesL);
-                    listBox1.Items.Clear();
-                    LoadListToScreen();
+                _project.NotesList.Remove(_project.CurrentNote);//  NotesL);
 
-                    if (_project.NotesList.Count != 0)
-                    {
-                        listBox1.SelectedIndex = 0;
-                    }
+                SelectNotesByCategory();
 
-                _project.NotesList = _project.SortingNote();
+                LoadListToScreen();
 
                 ManagerProject.Save(_project);
 
@@ -276,7 +216,7 @@ namespace NoteApp
             var selectedIndex = listBox1.SelectedIndex;
             if (listBox1.SelectedIndex != -1)
             {
-                var selectedNote = _project.NotesList[selectedIndex];
+                var selectedNote = _project.SelectedNotes[selectedIndex];
                 var inner = new NewEditNoteForm();
                 inner.Note = selectedNote; //Создаем форму
                 var result = inner.ShowDialog(this);
@@ -286,31 +226,52 @@ namespace NoteApp
                     //inner.EditNoteForm(selectedNote);
                     //Передаем форме данные
                     var updatenote = inner.Note;
-
-                    listBox1.Items.RemoveAt(selectedIndex);
-                    _project.NotesList.RemoveAt(selectedIndex);
-
-                    _project.NotesList.Insert(selectedIndex, updatenote);
-                    _project.NotesList = _project.SortingNote();
+                    _project.NotesList.Remove(selectedNote);
+                    _project.NotesList.Add(updatenote);
                     
+                    SelectNotesByCategory();
+                    LoadListToScreen();
+
                     ManagerProject.Save(_project);
                 }
                
             }
         }
 
-        private void SelectCategoryComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
-            for(int i = 0; i < _project.NotesList.Count; i++)
-            {
 
-                if(_project.NotesList[i].CategoryNote == SelectCategoryComboBox1.Text)
+        private void SelectNotesByCategory()
+        {
+            _project.SelectedNotes.Clear();
+
+            for (int i = 0; i < _project.NotesList.Count; i++)
+            {
+                if (SelectCategoryComboBox1.Text == "All")
                 {
-                    listBox1.Items.Add(_project.NotesList[i].Namenote);
+
+                    _project.SelectedNotes.Add(_project.NotesList[i]);
+
+                }
+                else
+                {
+                    if (_project.NotesList[i].CategoryNote == SelectCategoryComboBox1.Text)
+                    {
+                        _project.SelectedNotes.Add(_project.NotesList[i]);
+                    }
+
                 }
 
             }
+
+        }
+
+
+        private void SelectCategoryComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            SelectNotesByCategory();          
+
+            LoadListToScreen();
+
         }
     }
     
